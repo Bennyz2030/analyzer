@@ -72,3 +72,16 @@ function boldPassage(word, text) {
   });
   return htmlString + "</p>";
 }
+
+$(document).ready(function() {
+  $("form#word-counter").submit(function(event) {
+    event.preventDefault();
+    const passage = $("#text-passage").val();
+    const word = $("#word").val();
+    const wordCount = wordCounter(passage);
+    const occurrenceOFWord = numberOfOccurrencesInText(word, passage);
+    $("#total-count").html(wordCount);
+    $("selected-count").html(occurrenceOFWord);
+    $("#bolded-passage").html(boldPassage(word, passage));
+  });
+});
