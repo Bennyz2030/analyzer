@@ -33,3 +33,42 @@ function numberOfOccurrencesInText(word, text) {
   });
   return wordCount;
 }
+
+function mostUsedWords(text) {
+  const wordArray = text.split(" ");
+  let sortArray = wordArray.sort();
+  let commonWordCount = 0;
+  word = wordArray[0];
+  resultArray = [];
+
+  sortArray.forEach(function(element) {
+    if (element === word) {
+      commonWordCount ++;
+    } else {
+      resultArray.push(word + ": " + commonWordCount)
+      word = element
+    }
+  });
+  resultArray.push(word + ": " + commonWordCount)
+}
+
+// UI Logic
+
+function boldPassage(word, text) {
+  if (noInputtedWord(word, text)) {
+    return "";
+  }
+  let htmlString = "<p>";
+  let textArray = text.split(" ");
+  textArray.forEach(function(element, index) {
+    if (element.toLowerCase().includes(word.toLowerCase())) {
+      htmlString = htmlString.concat("<br>" + element + "<br>");
+    } else {
+      htmlString = htmlString.concat(element);
+    }
+    if (index !== (textArray.length - 1)) {
+      htmlString = htmlString.concat(" ");
+    }
+  });
+  return htmlString + "</p>";
+}
